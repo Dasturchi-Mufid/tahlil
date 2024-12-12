@@ -1,0 +1,282 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <title>Munis -Tahlil</title>
+
+    <meta name="author" content="themesflat.com">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+
+    <!-- Font -->
+    <link rel="stylesheet" href="{% static 'font/fonts.css' %}">
+
+    <!-- Icon -->
+    <link rel="stylesheet" href="{% static 'icon/style.css' %}">
+
+    <!-- Favicon and Touch Icons  -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}">
+    <link rel="apple-touch-icon-precomposed" href="{% static 'images/favicon.png' %}">
+
+</head>
+
+<body class="body">
+
+    <!-- #wrapper -->
+    <div id="wrapper">
+        <!-- #page -->
+        <div id="page" class="">
+            <!-- layout-wrap -->
+            <div class="layout-wrap menu-style-icon">
+                <!-- preload -->
+                <div id="preload" class="preload-container">
+                    <div class="preloading">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- /preload -->
+                <!-- section-menu-left -->
+                <div class="section-menu-left">
+                    <div class="box-logo">
+                        <a href="{% url 'home' %}" id="site-logo-inner">
+                            <img class="" id="logo_header" alt="" src="{% static 'images/logo/logo.png' %}" data-light="images/logo/logo.png" data-dark="{% static 'images/logo/logo-dark.png' %}" >
+                        </a>
+                        <div class="button-show-hide">
+                            <i class="icon-menu-left"></i>
+                        </div>
+                    </div>
+                    <div class="center">
+                        <div class="center-item">
+                            <div class="center-heading">Main Home</div>
+                            <ul class="menu-list">
+                                <li class="menu-item has-children active">
+                                    <a href="javascript:void(0);" class="menu-item-button">
+                                        <div class="icon"><i class="icon-grid"></i></div>
+                                        <div class="text">Dashboard</div>
+                                    </a>
+                                    <ul class="sub-menu" style="display: block;">
+                                        <li class="sub-menu-item">
+                                            <a href="{% url 'types' %}" class="">
+                                                <div class="text">Turlar</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /section-menu-left -->
+                <!-- section-content-right -->
+                <div class="section-content-right">
+                    <!-- header-dashboard -->
+                    <div class="header-dashboard">
+                        <div class="wrap">
+                            <div class="header-left">
+                                <a href="{% url 'home' %}">
+                                    <img class="" id="logo_header_mobile" alt="" src="{% static 'images/logo/logo.png' %}" data-light="{% static 'images/logo/logo.png' %}" data-dark="{% static 'images/logo/logo-dark.png' %}" data-width="154px" data-height="52px" data-retina="images/logo/logo@2x.png">
+                                </a>
+                                <div class="button-show-hide">
+                                    <i class="icon-menu-left"></i>
+                                </div>
+                                <form class="form-search flex-grow">
+                                    <fieldset class="name">
+                                        <input type="text" placeholder="Search here.." class="show-search" name="name" tabindex="2" value="" aria-required="true" required="">
+                                    </fieldset>
+                                    <div class="button-submit">
+                                        <button class="" type="submit"><i class="icon-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="header-grid">
+                                <div class="header-item button-dark-light">
+                                    <i class="icon-moon"></i>
+                                </div>
+                                <div class="header-item button-zoom-maximize">
+                                    <div class="">
+                                        <i class="icon-maximize"></i>
+                                    </div>
+                                </div>
+                                <div class="popup-wrap apps type-header">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton4" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="header-item">
+                                                <i class="icon-grid"></i>
+                                            </span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton4" >
+                                            <li>
+                                                <h6>Related apps</h6>
+                                            </li>
+                                            <li>
+                                                <ul class="list-apps">
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-1.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Photoshop</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-2.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">illustrator</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-3.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Sheets</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-4.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Gmail</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-5.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Messenger</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-6.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Youtube</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-7.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Flaticon</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-8.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">Instagram</div>
+                                                        </a>
+                                                    </li>
+                                                    <li class="item">
+                                                        <div class="image">
+                                                            <img src="images/apps/item-9.png" alt="">
+                                                        </div>
+                                                        <a href="#">
+                                                            <div class="text-tiny">PDF</div>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#" class="tf-button w-full">View all app</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="popup-wrap user type-header">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton3" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="header-user wg-user">
+                                                <span class="image">
+                                                    <img src="images/avatar/user-1.png" alt="">
+                                                </span>
+                                                <span class="flex flex-column">
+                                                    <span class="body-title mb-2">Kristin Watson</span>
+                                                    <span class="text-tiny">Admin</span>
+                                                </span>
+                                            </span>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end has-content" aria-labelledby="dropdownMenuButton3" >
+                                            <li>
+                                                <a href="login.html" class="user-item">
+                                                    <div class="icon">
+                                                        <i class="icon-log-out"></i>
+                                                    </div>
+                                                    <div class="body-title-2">Log out</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /header-dashboard -->
+                    <!-- main-content -->
+                    <div class="main-content">
+                        <!-- main-content-wrap -->
+                        <div class="main-content-inner">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                        <!-- /main-content-wrap -->
+                        <!-- bottom-page -->
+                        <div class="bottom-page">
+                            <!-- <div class="body-text">Copyright © 2024 Remos. Design with</div>
+                            <i class="icon-heart"></i>
+                            <div class="body-text">by <a href="https://themeforest.net/user/themesflat/portfolio">Themesflat</a> All rights reserved.</div> -->
+                        </div>
+                        <!-- /bottom-page -->
+                    </div>
+                    <!-- /main-content -->
+                </div>
+                <!-- /section-content-right -->
+            </div>
+            <!-- /layout-wrap -->
+        </div>
+        <!-- /#page -->
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Javascript -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'js/zoom.js' %}"></script>
+    <script src="{% static 'js/apexcharts/apexcharts.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-17.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-18.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-19.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-20.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-21.js' %}"></script>
+    <script src="{% static 'js/apexcharts/line-chart-22.js' %}"></script>
+    <!-- <script src="js/switcher.js"></script> -->
+    <script src="{% static 'js/theme-settings.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
