@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('',views.home,name='home'),
     path('types/',views.type,name='types'),
+    path('type-detail/<int:id>/',views.type_detail,name='type_detail'),
 ]

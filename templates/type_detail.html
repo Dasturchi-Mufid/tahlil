@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+<div class="wg-box">
+    <form action="{% url 'types' %}" method="post" onchange="submit()">
+        {% csrf_token %}
+    <div class="flex items-center justify-between gap10 flex-wrap">
+            <div class="select w200">
+                <select class="" name="branch">
+                    {% for k,b in branches.items %}
+                    <option value="{{k}}" {% if request.session.branch == k %} selected disabled {% endif %}>{{b}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <!-- </form> -->
+            <div class="col-xl-4 mb-20">
+                <div>
+                    <form class="">
+                        {% csrf_token %}
+                        <div class="select">
+                            <input type="month" name="date" value="{{month}}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="wg-table table-all-attribute">
+        <ul class="table-title flex gap20 mb-14">
+            <li>
+                <div class="body-title">№</div>
+            </li>    
+            <li>
+                <div class="body-title">Tur</div>
+            </li>
+            <li>
+                <div class="body-title">Mahsulot nomi</div>
+            </li>
+            <li>
+                <div class="body-title">Miqdor</div>
+            </li>
+            <li>
+                <div class="body-title">Narx</div>
+            </li>
+            <li>
+                <div class="body-title">Summa</div>
+            </li>
+            <li>
+                <div class="body-title">Kirim sana</div>
+            </li>
+            <li>
+                <div class="body-title">Chiqim sana</div>
+            </li>
+            <li>
+                <div class="body-title">O`rtacha</div>
+            </li>
+        </ul>
+        <ul class="flex flex-column">
+            {% for p in products %}
+            <li class="attribute-item flex items-center justify-between gap20">
+                <div class="body-text">{{forloop.counter}}</div>
+                <div class="body-text">{{p.type}}</div>
+                <div class="body-text">{{p.product}}</div>
+                <div class="body-text">{{p.quantity}}</div>
+                <div class="body-text">{{p.price}}</div>
+                <div class="body-text">{{p.total}}</div>
+                <div class="body-text">{{p.income|date:"d.m.Y"}}</div>
+                <div class="body-text">{{p.out|date:"d.m.Y"}}</div>
+                <div class="body-text">{{p.difference}}</div>
+            </li>
+            {% endfor %}
+            <!-- <li class="attribute-item flex items-center justify-between gap20">
+                <div class="body-text">Jami</div>
+                <div class="name">
+                    <a href="add-attributes.html" class="body-title-2">{{types_total.types}}</a>
+                </div>
+                <div class="body-text">{{types_total.quantity}} ta</div>
+                <div class="body-text">{{types_total.sum|intcomma}} $</div>
+                <div class="body-text">100 %</div>
+            </li> -->
+        </ul>
+    </div>
+    <div class="divider"></div>
+    <div class="flex items-center justify-between flex-wrap gap10">
+        <div class="text-tiny">Showing 10 entries</div>
+        <ul class="wg-pagination">
+            <li>
+                <a href="#"><i class="icon-chevron-left"></i></a>
+            </li>
+            <li>
+                <a href="#">1</a>
+            </li>
+            <li class="active">
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#"><i class="icon-chevron-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

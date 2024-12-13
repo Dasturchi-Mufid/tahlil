@@ -7,7 +7,7 @@ load_dotenv()
 USER = os.getenv('DB_USER')
 PASSWORD = os.getenv('PASSWORD')
 CHARSET = os.getenv('CHARSET')
-
+BRANCHES = os.getenv('BRANCHES')
 DSN_BRANCH = os.getenv('DSN_BRANCH')
 
 
