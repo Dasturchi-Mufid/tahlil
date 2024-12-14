@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load static %}
 
 {% block content %}
     <div class="wg-box">
@@ -24,27 +25,33 @@
                         </form>
                     </div>
                 </div>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="month" value="{{month}}">
+                    <input type="hidden" name="branch_excel" value="{{request.session.branch}}">
+                    <button type="submit" class="tf-button style-1 w208"><i class="icon-file-text"></i>Export all order</button>
+                </form>
             </div>
         </form>
         <div class="wg-table table-all-attribute">
             <ul class="table-title flex gap20 mb-14">
                 <li>
-                    <div class="body-title">ID</div>
-                </li>    
-                <li>
-                    <div class="body-title">Tur</div>
+                    <div class="body-title" onclick="sortTable('identifier')">ID <span id="identifier-sort-icon"></span></div>
                 </li>
                 <li>
-                    <div class="body-title">Miqdor</div>
+                    <div class="body-title" onclick="sortTable('type')">Tur <span id="type-sort-icon"></span></div>
                 </li>
                 <li>
-                    <div class="body-title">Summa</div>
+                    <div class="body-title" onclick="sortTable('quantity')">Miqdor <span id="quantity-sort-icon"></span></div>
                 </li>
                 <li>
-                    <div class="body-title">%</div>
+                    <div class="body-title" onclick="sortTable('totalAmount')">Summa <span id="totalAmount-sort-icon"></span></div>
+                </li>
+                <li>
+                    <div class="body-title" onclick="sortTable('percent')">%</div>
                 </li>
             </ul>
-            <ul class="flex flex-column">
+            <ul class="flex flex-column" id="item-list">
                 {% for t in types %}
                 <li class="attribute-item flex items-center justify-between gap20">
                     <div class="body-text">{{t.id}}</div>
@@ -65,6 +72,7 @@
                 </li>
             </ul>
         </div>
+        
         <div class="divider"></div>
         <div class="flex items-center justify-between flex-wrap gap10">
             <div class="text-tiny">Showing 10 entries</div>
@@ -87,5 +95,5 @@
             </ul>
         </div>
     </div>
-   
+   <script src="{% static 'js/sort_type.js' %}"></script>
 {% endblock %}

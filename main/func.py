@@ -1,4 +1,112 @@
+from django.http.response import HttpResponse
 import datetime,calendar
+import openpyxl
+
+
+def download_type_detail_xlsx(request,month,branch, data,tur):
+    # Create a workbook and a worksheet
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    # sheet.title = 'People Data'
+    first_header = ['',month,branch]
+
+    sheet.append(first_header)
+    # Set the headers for the columns
+    headers = ['№', 'Tur', 'Mahsulot', 'Miqdor','Narx','Summa','Kirim sana','Chiqim sana','O`rtacha kun']
+    
+    # Write the headers to the first row
+    sheet.append(headers)
+
+    # Ensure that data is not empty and properly structured
+    if not data:
+        print("No data to write to the file.")
+    
+    # Write data rows
+    for i,row in enumerate(data,1):
+        # Ensure the row is a dictionary and append values to the Excel sheet
+        sheet.append([
+            i,
+            row.get('type', ''),
+            row.get('product',''),  # Ensure phone has at least one element
+            row.get('quantity',''),  # Ensure there's a second phone number
+            row.get('price', ''),
+            row.get('total', ''),
+            row.get('income', ''),
+            row.get('out', ''),
+            row.get('difference', '')
+        ])
+    # Set the column widths (optional)
+    column_widths = [5,15, 45, 10, 15, 15,15,15,15]
+    for i, width in enumerate(column_widths, 1):
+        sheet.column_dimensions[openpyxl.utils.get_column_letter(i)].width = width
+
+    # Create a response object with 'Content-Type' for Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        charset='utf-8'
+    )
+    response['Content-Disposition'] = f'attachment; filename="{branch}_{month}-{tur}.xlsx"'
+
+    try:
+        # Save the workbook to the response object
+        workbook.save(response)
+    except Exception as e:
+        print(f"Error saving workbook: {e}")
+        response = HttpResponse("Error generating file.", status=500)
+
+    return response
+
+
+
+def download_type_xlsx(request,month,branch, data):
+    # Create a workbook and a worksheet
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    # sheet.title = 'People Data'
+    first_header = ['',month,branch]
+
+    sheet.append(first_header)
+    # Set the headers for the columns
+    headers = ['ID', 'Tur', 'Miqdor', 'Summa','Foiz']
+    
+    # Write the headers to the first row
+    sheet.append(headers)
+
+    # Ensure that data is not empty and properly structured
+    if not data:
+        print("No data to write to the file.")
+    
+    # Write data rows
+    for row in data:
+        # Ensure the row is a dictionary and append values to the Excel sheet
+        sheet.append([
+            row.get('id', ''),
+            row.get('type_name', ''),
+            row.get('quantity',''),  # Ensure phone has at least one element
+            row.get('sum',''),  # Ensure there's a second phone number
+            row.get('percentage', '')
+        ])
+    # Set the column widths (optional)
+    column_widths = [10, 45, 15, 15, 11]
+    for i, width in enumerate(column_widths, 1):
+        sheet.column_dimensions[openpyxl.utils.get_column_letter(i)].width = width
+
+    # Create a response object with 'Content-Type' for Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        charset='utf-8'
+    )
+    response['Content-Disposition'] = f'attachment; filename="{branch}_{month}-turlar.xlsx"'
+
+    try:
+        # Save the workbook to the response object
+        workbook.save(response)
+    except Exception as e:
+        print(f"Error saving workbook: {e}")
+        response = HttpResponse("Error generating file.", status=500)
+
+    return response
+
 
 def get_date(month: datetime.date):
     # Ensure month is a datetime.date object
