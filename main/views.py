@@ -9,13 +9,21 @@ branches = json.loads(BRANCHES)
 
 # Create your views here.
 def home(request):
+    print(request.POST)
+    branch = request.session.get('branch')
+    product_types = [{
+        "id":i[0],
+        "type_name":i[1]
+        } for i in func.get_data(query=queries.product_types, db=get_db(dbname=branch))
+    ]
     today = date.today()
     start,end = func.get_date(today.strftime('%Y-%m'))
     end = date.today()
 
-    if request.POST.get('start_date') and request.POST.get('end_date') and request.POST.get('branch'):
+    if request.POST.get('start_date') and request.POST.get('end_date') and request.session.get('branch'):
+        print(1)
         result = {}
-        branch = request.session['branch'] = request.POST.get('branch')
+        branch = request.session.get('branch')
         start,end = func.get_date_range(request.POST.get('start_date'),request.POST.get('end_date'))
         month_dict = func.get_month_ranges(start,end)
         
@@ -30,8 +38,13 @@ def home(request):
             for t in types:
                 t['percentage'] = round((t['sum'] / summa) * 100, 2)
             result[month] = types
+        with open('result.json', 'w',) as file:
+            json.dump(result, file, default=func.decimal_to_float,indent=4)
     else:
         result = {}
+    if request.POST.get('excel_report'):
+        print(result.values())
+        return func.download_report_xlsx(request=request,month=[start,end],branch=branch,data=result,product_types=product_types)
 
     context = {
         'branches': branches,

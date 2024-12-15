@@ -56,8 +56,11 @@
                     <div class="body-text">{{branch}} - {{m}}</div>
                 </div>
                 <form action="" method="post">
+                    {% csrf_token %}
                     <input type="hidden" name="excel_report" value="a">
-                    <input type="hidden">
+                    <input type="hidden" name="start_date" value="{{start}}">
+                    <input type="hidden" name="end_date" value="{{end}}">
+                    <input type="hidden" name="branch" value="{{request.session.branch}}">
                     <button class="tf-button style-1 w208" ><i class="icon-plus"></i>Add new</button>
                 </form>
             </div>

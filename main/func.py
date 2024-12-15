@@ -1,8 +1,12 @@
 from django.http.response import HttpResponse
 import datetime,calendar
 import openpyxl
+from decimal import Decimal
 
-
+def decimal_to_float(obj):
+    if isinstance(obj, Decimal):
+        return float(obj)
+    raise TypeError("Type not serializable")
 
 def download_type_detail_xlsx(request,month,branch, data,tur):
     # Create a workbook and a worksheet
@@ -106,6 +110,96 @@ def download_type_xlsx(request,month,branch, data):
         response = HttpResponse("Error generating file.", status=500)
 
     return response
+
+
+def get_items_by_id(data, target_id):
+    result = []
+    for month, items in data.items():
+        # Filter items with the matching id
+        filtered_items = [item for item in items if item['id'] == target_id]
+        result.extend(filtered_items)  # Add the filtered items to the result list
+    return result
+
+# import openpyxl
+# from django.http import HttpResponse
+
+import openpyxl
+from django.http import HttpResponse
+
+import openpyxl
+from django.http import HttpResponse
+
+import openpyxl
+from django.http import HttpResponse
+
+def download_report_xlsx(request, month, branch, data, product_types):
+    # Create a workbook and a worksheet
+    workbook = openpyxl.Workbook()
+    sheet = workbook.active
+    # sheet.title = 'People Data'
+
+    # Write the first row (branch and month)
+    header_1 = ['', branch] + month
+    sheet.append(header_1)
+
+    # Construct the second row with merged cells for the headers
+    header_2 = ['Tur']  # 'Tur' is in the first column
+    # Add empty cells before each data key for proper alignment
+    for m in data.keys():
+        header_2 += ['', '', m]  # Add empty cells for each data key
+
+    # Write the headers to the second row
+    sheet.append(header_2)
+
+    # Create the third row with 'Soni', 'Narx', '%'
+    header_3 = [''] + ['Soni', 'Narx', '%'] * len(data.keys())
+    sheet.append(header_3)
+
+    # Write the data for each product type
+    for t in product_types:
+        row = [t['type_name']]  # Start with the product type name
+        info = get_items_by_id(data=data, target_id=t['id'])
+        for j in info:
+            row += [j['quantity'], j['sum'], j['percentage']]  # Add the quantity, sum, and percentage
+        if len(row) != len(header_3):
+            dif = len(header_3) - len(row)
+            row += [0] * dif  # Fill the row with zeros if the length doesn't match
+        sheet.append(row)
+
+    # Merge cells for each header (every 3 columns for each m)
+    col_index = 2  # Start from the second column (after 'Tur')
+    for m in data.keys():
+        # Merge cells (each key should span 3 columns)
+        sheet.merge_cells(start_row=2, start_column=col_index, end_row=2, end_column=col_index + 2)
+        # Place the header value (e.g., 'Category1') in the first of the merged cells
+        sheet.cell(row=2, column=col_index, value=m)
+        col_index += 3  # Move to the next set of 3 columns
+
+    # Set the column widths (optional)
+    column_widths = [50] + [20] * len(header_3)
+    for i, width in enumerate(column_widths, 1):
+        sheet.column_dimensions[openpyxl.utils.get_column_letter(i)].width = width
+
+    # Ensure that data is not empty
+    if not data:
+        print("No data to write to the file.")
+
+    # Create a response object with 'Content-Type' for Excel
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        charset='utf-8'
+    )
+    response['Content-Disposition'] = f'attachment; filename="{branch}_{month}-turlar.xlsx"'
+
+    try:
+        # Save the workbook to the response object
+        workbook.save(response)
+    except Exception as e:
+        print(f"Error saving workbook: {e}")
+        response = HttpResponse("Error generating file.", status=500)
+
+    return response
+
 
 
 def get_date(month: datetime.date):

@@ -1,0 +1,354 @@
+{
+    "December": [
+        {
+            "id": 1,
+            "type_name": "Telefon",
+            "quantity": 75.0,
+            "sum": 19299.1,
+            "percentage": 31.13
+        },
+        {
+            "id": 2,
+            "type_name": "Televizor",
+            "quantity": 29.0,
+            "sum": 8034.5,
+            "percentage": 12.96
+        },
+        {
+            "id": 4,
+            "type_name": "Changyutgich",
+            "quantity": 10.0,
+            "sum": 1112.48,
+            "percentage": 1.79
+        },
+        {
+            "id": 6,
+            "type_name": "Mikroto'lqinli pech",
+            "quantity": 12.0,
+            "sum": 882.4,
+            "percentage": 1.42
+        },
+        {
+            "id": 7,
+            "type_name": "Elektr pech",
+            "quantity": 6.0,
+            "sum": 666.0,
+            "percentage": 1.07
+        },
+        {
+            "id": 8,
+            "type_name": "Isitgich",
+            "quantity": 4.0,
+            "sum": 92.5,
+            "percentage": 0.15
+        },
+        {
+            "id": 10,
+            "type_name": "Avtomat kir yuvish mashinasi",
+            "quantity": 10.0,
+            "sum": 3656.0,
+            "percentage": 5.9
+        },
+        {
+            "id": 11,
+            "type_name": "Yarim avto kir yuvish mashinasi",
+            "quantity": 5.0,
+            "sum": 689.0,
+            "percentage": 1.11
+        },
+        {
+            "id": 15,
+            "type_name": "Sharbatsiqgich",
+            "quantity": 1.0,
+            "sum": 95.0,
+            "percentage": 0.15
+        },
+        {
+            "id": 16,
+            "type_name": "Mikser",
+            "quantity": 2.0,
+            "sum": 210.0,
+            "percentage": 0.34
+        },
+        {
+            "id": 20,
+            "type_name": "Printer",
+            "quantity": 2.0,
+            "sum": 412.0,
+            "percentage": 0.66
+        },
+        {
+            "id": 22,
+            "type_name": "Noutbook",
+            "quantity": 4.0,
+            "sum": 1315.0,
+            "percentage": 2.12
+        },
+        {
+            "id": 24,
+            "type_name": "Pichoq naborlar",
+            "quantity": 1.0,
+            "sum": 25.0,
+            "percentage": 0.04
+        },
+        {
+            "id": 25,
+            "type_name": "Kondisioner",
+            "quantity": 4.0,
+            "sum": 1595.0,
+            "percentage": 2.57
+        },
+        {
+            "id": 29,
+            "type_name": "Didit",
+            "quantity": 2.0,
+            "sum": 448.0,
+            "percentage": 0.72
+        },
+        {
+            "id": 33,
+            "type_name": "Tikuv mashinasi",
+            "quantity": 2.0,
+            "sum": 835.0,
+            "percentage": 1.35
+        },
+        {
+            "id": 37,
+            "type_name": "Chopper",
+            "quantity": 2.0,
+            "sum": 58.0,
+            "percentage": 0.09
+        },
+        {
+            "id": 39,
+            "type_name": "Elektr choynak",
+            "quantity": 2.0,
+            "sum": 43.0,
+            "percentage": 0.07
+        },
+        {
+            "id": 42,
+            "type_name": "Idishlar",
+            "quantity": 14.0,
+            "sum": 446.3,
+            "percentage": 0.72
+        },
+        {
+            "id": 46,
+            "type_name": "Termos",
+            "quantity": 1.0,
+            "sum": 7.0,
+            "percentage": 0.01
+        },
+        {
+            "id": 48,
+            "type_name": "Choynak",
+            "quantity": 1.0,
+            "sum": 18.0,
+            "percentage": 0.03
+        },
+        {
+            "id": 53,
+            "type_name": "Mebel",
+            "quantity": 12.0,
+            "sum": 2135.6,
+            "percentage": 3.45
+        },
+        {
+            "id": 54,
+            "type_name": "Sirli idishlar",
+            "quantity": 2.0,
+            "sum": 52.13,
+            "percentage": 0.08
+        },
+        {
+            "id": 62,
+            "type_name": "Skuter",
+            "quantity": 1.0,
+            "sum": 420.0,
+            "percentage": 0.68
+        },
+        {
+            "id": 70,
+            "type_name": "EPA",
+            "quantity": 3.0,
+            "sum": 83.8,
+            "percentage": 0.14
+        },
+        {
+            "id": 74,
+            "type_name": "Sushilka",
+            "quantity": 4.0,
+            "sum": 51.9,
+            "percentage": 0.08
+        },
+        {
+            "id": 83,
+            "type_name": "Telefon aksessuari",
+            "quantity": 6.0,
+            "sum": 53.31,
+            "percentage": 0.09
+        },
+        {
+            "id": 88,
+            "type_name": "O'yinchoqlar",
+            "quantity": 1.0,
+            "sum": 12.26,
+            "percentage": 0.02
+        },
+        {
+            "id": 90,
+            "type_name": "Texstil mahsulotlari",
+            "quantity": 2.0,
+            "sum": 4.75,
+            "percentage": 0.01
+        },
+        {
+            "id": 91,
+            "type_name": "Gilamlar",
+            "quantity": 2.0,
+            "sum": 423.34,
+            "percentage": 0.68
+        },
+        {
+            "id": 95,
+            "type_name": "Mebel",
+            "quantity": 1.0,
+            "sum": 73.0,
+            "percentage": 0.12
+        },
+        {
+            "id": 98,
+            "type_name": "Kukmara",
+            "quantity": 7.0,
+            "sum": 137.5,
+            "percentage": 0.22
+        },
+        {
+            "id": 123,
+            "type_name": "Aralash",
+            "quantity": 2.0,
+            "sum": 131.0,
+            "percentage": 0.21
+        },
+        {
+            "id": 129,
+            "type_name": "Atirlar",
+            "quantity": 1.0,
+            "sum": 9.0,
+            "percentage": 0.01
+        },
+        {
+            "id": 130,
+            "type_name": "Isitgich",
+            "quantity": 7.0,
+            "sum": 191.5,
+            "percentage": 0.31
+        },
+        {
+            "id": 133,
+            "type_name": "Dazmol",
+            "quantity": 4.0,
+            "sum": 117.0,
+            "percentage": 0.19
+        },
+        {
+            "id": 134,
+            "type_name": "Muzlatgich",
+            "quantity": 16.0,
+            "sum": 7795.0,
+            "percentage": 12.57
+        },
+        {
+            "id": 136,
+            "type_name": "Gaz plita",
+            "quantity": 4.0,
+            "sum": 1186.0,
+            "percentage": 1.91
+        },
+        {
+            "id": 137,
+            "type_name": "Dudbo'ron",
+            "quantity": 5.0,
+            "sum": 463.0,
+            "percentage": 0.75
+        },
+        {
+            "id": 138,
+            "type_name": "Kolonka",
+            "quantity": 11.0,
+            "sum": 708.15,
+            "percentage": 1.14
+        },
+        {
+            "id": 140,
+            "type_name": "Ayollar aksessuari",
+            "quantity": 20.0,
+            "sum": 276.3,
+            "percentage": 0.45
+        },
+        {
+            "id": 141,
+            "type_name": "Mebel",
+            "quantity": 1.0,
+            "sum": 144.0,
+            "percentage": 0.23
+        },
+        {
+            "id": 152,
+            "type_name": "Mebel",
+            "quantity": 1.0,
+            "sum": 168.0,
+            "percentage": 0.27
+        },
+        {
+            "id": 174,
+            "type_name": "Tyuning",
+            "quantity": 23.0,
+            "sum": 1514.5,
+            "percentage": 2.44
+        },
+        {
+            "id": 196,
+            "type_name": "Kapkir to'plami",
+            "quantity": 1.0,
+            "sum": 11.3,
+            "percentage": 0.02
+        },
+        {
+            "id": 206,
+            "type_name": "Didit",
+            "quantity": 2.0,
+            "sum": 67.0,
+            "percentage": 0.11
+        },
+        {
+            "id": 207,
+            "type_name": "Idishlar",
+            "quantity": 8.0,
+            "sum": 711.0,
+            "percentage": 1.15
+        },
+        {
+            "id": 208,
+            "type_name": "Mebel",
+            "quantity": 36.0,
+            "sum": 5077.3,
+            "percentage": 8.19
+        },
+        {
+            "id": 213,
+            "type_name": "Sumka",
+            "quantity": 2.0,
+            "sum": 10.7,
+            "percentage": 0.02
+        },
+        {
+            "id": 216,
+            "type_name": "Telefon tugmali ",
+            "quantity": 2.0,
+            "sum": 21.5,
+            "percentage": 0.03
+        }
+    ]
+}

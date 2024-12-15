@@ -1,4 +1,4 @@
-# types = """SELECT id,NOMI FROM MAXSULOTTUR m """
+product_types = """SELECT id,NOMI FROM MAXSULOTTUR m where m.NOMI != '1'"""
 
 types = """SELECT 
     m.id as tur_id,
@@ -14,7 +14,7 @@ LEFT JOIN
 LEFT JOIN 
 	kirim k ON k.id=c.KIRIM_ID 
 WHERE 
-    c.YVAQT BETWEEN ? AND ?
+    c.YVAQT BETWEEN ? AND ? and m.NOMI != '1'
 GROUP BY
     m.id,m.NOMI"""
 
