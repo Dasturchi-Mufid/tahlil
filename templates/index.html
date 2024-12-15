@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
     <!-- main-content-wrap -->
@@ -8,41 +9,114 @@
             <div class="wg-box">
                 <h3>Hisobot</h3>
                 <form action="" method="post">
+                    {% csrf_token %}
                     <div class="row">
                         <div class="col-xl-4 mb-20">
                             <div>
+                                <h5 class="mb-16">Fillial</h5>
+                                <div class="select w200">
+                                    <select class="" name="branch">
+                                        {% for k,b in branches.items %}
+                                        <option value="{{k}}" {% if request.session.branch == k %} selected disabled {% endif %}>{{b}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 mb-20">
+                            <div>
                                 <h5 class="mb-16">Boshlanish sanasi</h5>
-                                <form class="">
+                                <div class="">
                                     <div class="select">
-                                        <input type="date" name="start_date" value="{{start}}">
+                                        <input type="month" name="start_date" value="{{start}}">
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="col-xl-4 mb-20">
                             <div>
                                 <h5 class="mb-16">Tugash sanasi</h5>
-                                <form class="">
+                                <div class="">
                                     <div class="select">
-                                        <input type="date" name="end_date" value="{{today}}">
+                                        <input type="month" name="end_date" value="{{end}}">
                                     </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 mb-20">
-                            <div>
-                                <h5 class="mb-16">Natija</h5>
-                                <form class="">
-                                    <div>
-                                        <button class="tf-button w208" type="submit">Jo`natish</button>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button class="tf-button w208" type="submit">Jo`natish</button>
                 </form>
             </div>
         </div>
+        {% if result %}
+        {% for m,res in result.items %}
+        <div class="wg-box">
+            <div class="flex items-center justify-between gap10 flex-wrap">
+                <div class="wg-filter flex-grow">
+                    <div class="body-text">{{branch}} - {{m}}</div>
+                </div>
+                <form action="" method="post">
+                    <input type="hidden" name="excel_report" value="a">
+                    <input type="hidden">
+                    <button class="tf-button style-1 w208" ><i class="icon-plus"></i>Add new</button>
+                </form>
+            </div>
+            <div class="wg-table table-product-list">
+                <ul class="table-title flex gap20 mb-14">
+                    <li>
+                        <div class="body-title">ID</div>
+                    </li>    
+                    <li>
+                        <div class="body-title">Tur</div>
+                    </li>
+                    <li>
+                        <div class="body-title">Miqdor</div>
+                    </li>
+                    <li>
+                        <div class="body-title">Summa</div>
+                    </li>
+                    <li>
+                        <div class="body-title">Foiz</div>
+                    </li>
+                </ul>
+                <ul class="flex flex-column">
+                    {% for r in res %}
+                    <li class="product-item gap14">
+                        <div class="flex items-center justify-between gap20 flex-grow">
+                            <div class="body-text">{{r.id}}</div>
+                            <div class="body-text">{{r.type_name}}</div>
+                            <div class="body-text">{{r.quantity}} ta</div>
+                            <div class="body-text">{{r.sum|intcomma}} $</div>
+                            <div class="body-text">{{r.percentage}} %</div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="divider"></div>
+            <div class="flex items-center justify-between flex-wrap gap10">
+                <div class="text-tiny">Showing 10 entries</div>
+                <ul class="wg-pagination">
+                    <li>
+                        <a href="#"><i class="icon-chevron-left"></i></a>
+                    </li>
+                    <li>
+                        <a href="#">1</a>
+                    </li>
+                    <li class="active">
+                        <a href="#">2</a>
+                    </li>
+                    <li>
+                        <a href="#">3</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="icon-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
         <div class="tf-section-4 mb-30">
         </div>
         <div class="tf-section-8 mb-30">

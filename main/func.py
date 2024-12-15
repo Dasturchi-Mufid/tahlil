@@ -3,6 +3,7 @@ import datetime,calendar
 import openpyxl
 
 
+
 def download_type_detail_xlsx(request,month,branch, data,tur):
     # Create a workbook and a worksheet
     workbook = openpyxl.Workbook()
@@ -55,7 +56,6 @@ def download_type_detail_xlsx(request,month,branch, data,tur):
         response = HttpResponse("Error generating file.", status=500)
 
     return response
-
 
 
 def download_type_xlsx(request,month,branch, data):
@@ -134,3 +134,48 @@ def get_data(query,db,params=[]):
     db.execute(query,params)
     data = db.fetchall()
     return data
+
+
+
+def get_date_range(start,end):
+    # Convert to datetime objects
+    start_date = datetime.datetime.strptime(start, "%Y-%m")
+    end_date = datetime.datetime.strptime(end, "%Y-%m")
+
+    # Get the first day of the start month
+    first_day = start_date.replace(day=1)
+
+    # Get the last day of the end month
+    last_day = datetime.datetime(end_date.year, end_date.month, calendar.monthrange(end_date.year, end_date.month)[1])
+
+    return first_day,last_day
+
+def get_month_ranges(start_date, end_date):
+    # Initialize the dictionary to store results
+    month_range_dict = {}
+
+    # Loop through each month in the range
+    current_date = start_date
+    while current_date <= end_date:
+        # Get the first day of the current month
+        first_day = current_date.replace(day=1)
+        
+        # Get the last day of the current month
+        last_day = datetime.datetime(current_date.year, current_date.month, calendar.monthrange(current_date.year, current_date.month)[1])
+        
+        # Get the full month name
+        month_name = current_date.strftime('%B')  # '%B' gives the full month name
+        
+        # Store in the dictionary with the full month name as key and (first_day, last_day) as value
+        month_range_dict[month_name] = (first_day, last_day)
+        
+        # Move to the next month
+        if current_date.month == 12:
+            current_date = datetime.datetime(current_date.year + 1, 1, 1)
+        else:
+            current_date = datetime.datetime(current_date.year, current_date.month + 1, 1)
+
+    return month_range_dict
+
+
+

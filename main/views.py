@@ -9,19 +9,40 @@ branches = json.loads(BRANCHES)
 
 # Create your views here.
 def home(request):
-    print(f'get: {request.GET}')
-    print(f'post: {request.POST}')
     today = date.today()
     start,end = func.get_date(today.strftime('%Y-%m'))
+    end = date.today()
+
+    if request.POST.get('start_date') and request.POST.get('end_date') and request.POST.get('branch'):
+        result = {}
+        branch = request.session['branch'] = request.POST.get('branch')
+        start,end = func.get_date_range(request.POST.get('start_date'),request.POST.get('end_date'))
+        month_dict = func.get_month_ranges(start,end)
+        
+        for month,date_range in month_dict.items():
+            types = [{
+                "id":i[0],
+                "type_name":i[1],
+                "quantity":i[2],
+                "sum":i[3],
+                }for i in func.get_data(query=queries.types,db=get_db(dbname=branch),params=date_range)]
+            summa = sum(i['sum'] for i in types)
+            for t in types:
+                t['percentage'] = round((t['sum'] / summa) * 100, 2)
+            result[month] = types
+    else:
+        result = {}
+
     context = {
         'branches': branches,
-        'today': today.strftime('%Y-%m-%d'),
-        'start': start.strftime('%Y-%m-%d'),
+        'branch':branches.get(request.session.get('branch')),
+        'end': end.strftime('%Y-%m'),
+        'start': start.strftime('%Y-%m'),
+        'result':result
     }
     return render(request,'index.html',context)
 
 def typee(request):
-    print(request.POST)
     if request.session.get('branch'):
         branch = request.session.get('branch')
     if request.POST.get('branch'):
@@ -49,7 +70,6 @@ def typee(request):
         t['percentage'] = round((t['sum'] / types_total['sum']) * 100, 2)
     
     if request.POST.get('branch_excel') and request.POST.get('month'):
-        print('excel')
         branch_ = request.POST.get('branch_excel')
         month_ = request.POST.get('month')
         return func.download_type_xlsx(request,month_,branch_,types)
