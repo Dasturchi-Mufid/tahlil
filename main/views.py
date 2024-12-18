@@ -4,12 +4,17 @@ from . import func
 from . import queries
 from datetime import date
 import json
+from django.views.decorators.csrf import csrf_exempt
+
 
 branches = json.loads(BRANCHES)
 
 # Create your views here.
+@csrf_exempt
 def home(request):
-    print(request.POST)
+    if not request.session.get('branch'):
+        request.session['branch'] = 'o'
+    
     branch = request.session.get('branch')
     product_types = [{
         "id":i[0],
@@ -20,30 +25,28 @@ def home(request):
     start,end = func.get_date(today.strftime('%Y-%m'))
     end = date.today()
 
-    if request.POST.get('start_date') and request.POST.get('end_date') and request.session.get('branch'):
-        print(1)
+    if request.POST.get('start_date') and request.POST.get('end_date') and (request.session.get('branch') or request.POST.get('branch')):
         result = {}
         branch = request.session.get('branch')
         start,end = func.get_date_range(request.POST.get('start_date'),request.POST.get('end_date'))
         month_dict = func.get_month_ranges(start,end)
         
         for month,date_range in month_dict.items():
-            types = [{
+            typees = [{
                 "id":i[0],
                 "type_name":i[1],
                 "quantity":i[2],
                 "sum":i[3],
                 }for i in func.get_data(query=queries.types,db=get_db(dbname=branch),params=date_range)]
-            summa = sum(i['sum'] for i in types)
-            for t in types:
+            summa = sum(i['sum'] for i in typees)
+            for t in typees:
                 t['percentage'] = round((t['sum'] / summa) * 100, 2)
-            result[month] = types
+            result[month] = typees
         with open('result.json', 'w',) as file:
             json.dump(result, file, default=func.decimal_to_float,indent=4)
     else:
         result = {}
     if request.POST.get('excel_report'):
-        print(result.values())
         return func.download_report_xlsx(request=request,month=[start,end],branch=branch,data=result,product_types=product_types)
 
     context = {
@@ -55,7 +58,9 @@ def home(request):
     }
     return render(request,'index.html',context)
 
+@csrf_exempt
 def typee(request):
+    branch = request.session.get('branch','o')
     if request.session.get('branch'):
         branch = request.session.get('branch')
     if request.POST.get('branch'):
@@ -96,6 +101,7 @@ def typee(request):
     
     return render(request, 'types.html', context)
 
+@csrf_exempt
 def type_detail(request,id):
     request.session['branch'] = branch = request.session.get('branch','o')
     month = date.today().strftime('%Y-%m')
@@ -104,7 +110,6 @@ def type_detail(request,id):
         month = request.POST.get('date')
         start,end = func.get_date(month=month)
     params = [start, end,id]
-    # print(func.get_data(query=queries.product,db=get_db(dbname=branch),params=params))
     products = [{
         "type_id":i[0],
         "type":i[1],
@@ -133,3 +138,9 @@ def type_detail(request,id):
         'totals': totals
     }
     return render(request,'type_detail.html',context)
+
+
+
+
+def flush(request):
+    request.session.flush()

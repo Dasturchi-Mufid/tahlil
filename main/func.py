@@ -120,17 +120,6 @@ def get_items_by_id(data, target_id):
         result.extend(filtered_items)  # Add the filtered items to the result list
     return result
 
-# import openpyxl
-# from django.http import HttpResponse
-
-import openpyxl
-from django.http import HttpResponse
-
-import openpyxl
-from django.http import HttpResponse
-
-import openpyxl
-from django.http import HttpResponse
 
 def download_report_xlsx(request, month, branch, data, product_types):
     # Create a workbook and a worksheet
@@ -189,7 +178,8 @@ def download_report_xlsx(request, month, branch, data, product_types):
         content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         charset='utf-8'
     )
-    response['Content-Disposition'] = f'attachment; filename="{branch}_{month}-turlar.xlsx"'
+    filename = f'{branch}-{month[0].strftime('%d-%B-%Y')}-{month[1].strftime('%d-%B-%Y')}-turlar'
+    response['Content-Disposition'] = f'attachment; filename="{filename}.xlsx"'
 
     try:
         # Save the workbook to the response object
@@ -219,7 +209,7 @@ def get_date(month: datetime.date):
         next_month = month.replace(month=month.month + 1, day=1)
 
     # Subtract one day from the first day of the next month to get the last day of the current month
-    last_day = next_month - datetime.timedelta(days=1)
+    last_day = next_month
 
     return first_day, last_day
 

@@ -38,6 +38,6 @@ LEFT JOIN
 LEFT JOIN
 	KIRIM k ON k.id=c.KIRIM_ID 
 WHERE 
-	c.YVAQT BETWEEN ? AND ? AND m.id=?
+	m.nomi != '1' and c.YVAQT BETWEEN ? AND ? AND m.id=?
 GROUP BY
 	c.id,m.id,m.nomi,m2.nomi,m2.marka,m2.model,c.MIQDOR,k.usd,k.YVAQT, c.YVAQT"""

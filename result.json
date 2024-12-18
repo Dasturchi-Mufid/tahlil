@@ -3,57 +3,57 @@
         {
             "id": 1,
             "type_name": "Telefon",
-            "quantity": 75.0,
-            "sum": 19299.1,
-            "percentage": 31.13
+            "quantity": 89.0,
+            "sum": 23253.1,
+            "percentage": 32.09
         },
         {
             "id": 2,
             "type_name": "Televizor",
-            "quantity": 29.0,
-            "sum": 8034.5,
-            "percentage": 12.96
+            "quantity": 30.0,
+            "sum": 8170.5,
+            "percentage": 11.27
         },
         {
             "id": 4,
             "type_name": "Changyutgich",
-            "quantity": 10.0,
-            "sum": 1112.48,
-            "percentage": 1.79
+            "quantity": 15.0,
+            "sum": 1735.48,
+            "percentage": 2.39
         },
         {
             "id": 6,
             "type_name": "Mikroto'lqinli pech",
-            "quantity": 12.0,
-            "sum": 882.4,
+            "quantity": 14.0,
+            "sum": 1028.2,
             "percentage": 1.42
         },
         {
             "id": 7,
             "type_name": "Elektr pech",
-            "quantity": 6.0,
-            "sum": 666.0,
-            "percentage": 1.07
+            "quantity": 7.0,
+            "sum": 789.0,
+            "percentage": 1.09
         },
         {
             "id": 8,
             "type_name": "Isitgich",
             "quantity": 4.0,
             "sum": 92.5,
-            "percentage": 0.15
+            "percentage": 0.13
         },
         {
             "id": 10,
             "type_name": "Avtomat kir yuvish mashinasi",
-            "quantity": 10.0,
-            "sum": 3656.0,
-            "percentage": 5.9
+            "quantity": 11.0,
+            "sum": 3941.0,
+            "percentage": 5.44
         },
         {
             "id": 11,
             "type_name": "Yarim avto kir yuvish mashinasi",
-            "quantity": 5.0,
-            "sum": 689.0,
+            "quantity": 6.0,
+            "sum": 805.0,
             "percentage": 1.11
         },
         {
@@ -61,77 +61,77 @@
             "type_name": "Sharbatsiqgich",
             "quantity": 1.0,
             "sum": 95.0,
-            "percentage": 0.15
+            "percentage": 0.13
         },
         {
             "id": 16,
             "type_name": "Mikser",
             "quantity": 2.0,
             "sum": 210.0,
-            "percentage": 0.34
+            "percentage": 0.29
         },
         {
             "id": 20,
             "type_name": "Printer",
             "quantity": 2.0,
             "sum": 412.0,
-            "percentage": 0.66
+            "percentage": 0.57
         },
         {
             "id": 22,
             "type_name": "Noutbook",
             "quantity": 4.0,
             "sum": 1315.0,
-            "percentage": 2.12
+            "percentage": 1.81
         },
         {
             "id": 24,
             "type_name": "Pichoq naborlar",
             "quantity": 1.0,
             "sum": 25.0,
-            "percentage": 0.04
+            "percentage": 0.03
         },
         {
             "id": 25,
             "type_name": "Kondisioner",
-            "quantity": 4.0,
-            "sum": 1595.0,
-            "percentage": 2.57
+            "quantity": 5.0,
+            "sum": 2045.0,
+            "percentage": 2.82
         },
         {
             "id": 29,
             "type_name": "Didit",
             "quantity": 2.0,
             "sum": 448.0,
-            "percentage": 0.72
+            "percentage": 0.62
         },
         {
             "id": 33,
             "type_name": "Tikuv mashinasi",
             "quantity": 2.0,
             "sum": 835.0,
-            "percentage": 1.35
+            "percentage": 1.15
         },
         {
             "id": 37,
             "type_name": "Chopper",
             "quantity": 2.0,
             "sum": 58.0,
-            "percentage": 0.09
+            "percentage": 0.08
         },
         {
             "id": 39,
             "type_name": "Elektr choynak",
             "quantity": 2.0,
             "sum": 43.0,
-            "percentage": 0.07
+            "percentage": 0.06
         },
         {
             "id": 42,
             "type_name": "Idishlar",
-            "quantity": 14.0,
-            "sum": 446.3,
-            "percentage": 0.72
+            "quantity": 15.0,
+            "sum": 449.8,
+            "percentage": 0.62
         },
         {
             "id": 46,
@@ -143,51 +143,51 @@
         {
             "id": 48,
             "type_name": "Choynak",
-            "quantity": 1.0,
-            "sum": 18.0,
-            "percentage": 0.03
+            "quantity": 2.0,
+            "sum": 36.0,
+            "percentage": 0.05
         },
         {
             "id": 53,
             "type_name": "Mebel",
             "quantity": 12.0,
             "sum": 2135.6,
-            "percentage": 3.45
+            "percentage": 2.95
         },
         {
             "id": 54,
             "type_name": "Sirli idishlar",
             "quantity": 2.0,
             "sum": 52.13,
-            "percentage": 0.08
+            "percentage": 0.07
         },
         {
             "id": 62,
             "type_name": "Skuter",
             "quantity": 1.0,
             "sum": 420.0,
-            "percentage": 0.68
+            "percentage": 0.58
         },
         {
             "id": 70,
             "type_name": "EPA",
-            "quantity": 3.0,
-            "sum": 83.8,
-            "percentage": 0.14
+            "quantity": 5.0,
+            "sum": 343.8,
+            "percentage": 0.47
         },
         {
             "id": 74,
             "type_name": "Sushilka",
             "quantity": 4.0,
             "sum": 51.9,
-            "percentage": 0.08
+            "percentage": 0.07
         },
         {
             "id": 83,
             "type_name": "Telefon aksessuari",
             "quantity": 6.0,
             "sum": 53.31,
-            "percentage": 0.09
+            "percentage": 0.07
         },
         {
             "id": 88,
@@ -208,28 +208,28 @@
             "type_name": "Gilamlar",
             "quantity": 2.0,
             "sum": 423.34,
-            "percentage": 0.68
+            "percentage": 0.58
         },
         {
             "id": 95,
             "type_name": "Mebel",
             "quantity": 1.0,
             "sum": 73.0,
-            "percentage": 0.12
+            "percentage": 0.1
         },
         {
             "id": 98,
             "type_name": "Kukmara",
-            "quantity": 7.0,
-            "sum": 137.5,
+            "quantity": 8.0,
+            "sum": 156.5,
             "percentage": 0.22
         },
         {
             "id": 123,
             "type_name": "Aralash",
-            "quantity": 2.0,
-            "sum": 131.0,
-            "percentage": 0.21
+            "quantity": 4.0,
+            "sum": 178.2,
+            "percentage": 0.25
         },
         {
             "id": 129,
@@ -243,70 +243,70 @@
             "type_name": "Isitgich",
             "quantity": 7.0,
             "sum": 191.5,
-            "percentage": 0.31
+            "percentage": 0.26
         },
         {
             "id": 133,
             "type_name": "Dazmol",
             "quantity": 4.0,
             "sum": 117.0,
-            "percentage": 0.19
+            "percentage": 0.16
         },
         {
             "id": 134,
             "type_name": "Muzlatgich",
-            "quantity": 16.0,
-            "sum": 7795.0,
-            "percentage": 12.57
+            "quantity": 19.0,
+            "sum": 9940.0,
+            "percentage": 13.72
         },
         {
             "id": 136,
             "type_name": "Gaz plita",
-            "quantity": 4.0,
-            "sum": 1186.0,
-            "percentage": 1.91
+            "quantity": 5.0,
+            "sum": 1398.0,
+            "percentage": 1.93
         },
         {
             "id": 137,
             "type_name": "Dudbo'ron",
             "quantity": 5.0,
             "sum": 463.0,
-            "percentage": 0.75
+            "percentage": 0.64
         },
         {
             "id": 138,
             "type_name": "Kolonka",
             "quantity": 11.0,
             "sum": 708.15,
-            "percentage": 1.14
+            "percentage": 0.98
         },
         {
             "id": 140,
             "type_name": "Ayollar aksessuari",
-            "quantity": 20.0,
-            "sum": 276.3,
-            "percentage": 0.45
+            "quantity": 21.0,
+            "sum": 286.1,
+            "percentage": 0.39
         },
         {
             "id": 141,
             "type_name": "Mebel",
             "quantity": 1.0,
             "sum": 144.0,
-            "percentage": 0.23
+            "percentage": 0.2
         },
         {
             "id": 152,
             "type_name": "Mebel",
             "quantity": 1.0,
             "sum": 168.0,
-            "percentage": 0.27
+            "percentage": 0.23
         },
         {
             "id": 174,
             "type_name": "Tyuning",
-            "quantity": 23.0,
-            "sum": 1514.5,
-            "percentage": 2.44
+            "quantity": 27.0,
+            "sum": 1714.5,
+            "percentage": 2.37
         },
         {
             "id": 196,
@@ -320,28 +320,28 @@
             "type_name": "Didit",
             "quantity": 2.0,
             "sum": 67.0,
-            "percentage": 0.11
+            "percentage": 0.09
         },
         {
             "id": 207,
             "type_name": "Idishlar",
-            "quantity": 8.0,
-            "sum": 711.0,
-            "percentage": 1.15
+            "quantity": 10.0,
+            "sum": 961.0,
+            "percentage": 1.33
         },
         {
             "id": 208,
             "type_name": "Mebel",
-            "quantity": 36.0,
-            "sum": 5077.3,
-            "percentage": 8.19
+            "quantity": 45.0,
+            "sum": 6563.3,
+            "percentage": 9.06
         },
         {
             "id": 213,
             "type_name": "Sumka",
             "quantity": 2.0,
             "sum": 10.7,
-            "percentage": 0.02
+            "percentage": 0.01
         },
         {
             "id": 216,
