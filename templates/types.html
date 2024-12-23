@@ -3,97 +3,110 @@
 {% load static %}
 
 {% block content %}
-    <div class="wg-box">
-        <form action="" method="post" onchange="submit()">
-            {% csrf_token %}
+<div class="wg-box">
+    <form action method="post">
+        {% csrf_token %}
         <div class="flex items-center justify-between gap10 flex-wrap">
-                <div class="select w200">
-                    <select class="" name="branch">
-                        {% for k,b in branches.items %}
-                        <option value="{{k}}" {% if request.session.branch == k %} selected disabled {% endif %}>{{b}}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-            <!-- </form> -->
-                <div class="col-xl-4 mb-20">
-                    <div>
-                        <form class="">
-                            {% csrf_token %}
-                            <div class="select">
-                                <input type="month" name="date" value="{{month}}">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="month" value="{{month}}">
-                    <input type="hidden" name="branch_excel" value="{{request.session.branch}}">
-                    <button type="submit" class="tf-button style-1 w208"><i class="icon-file-text"></i>Excel</button>
-                </form>
+            <div class="select w200">
+                <select class name="branch">
+                    {% for k,b in branches.items %}
+                    <option value="{{k}}" {% if request.session.branch == k %}
+                        selected disabled {% endif %}>{{b}}</option>
+                    {% endfor %}
+                </select>
             </div>
-        </form>
-        <div class="wg-table table-all-attribute">
-            <ul class="table-title flex gap20 mb-14">
-                <li>
-                    <div class="body-title" onclick="sortTable('identifier')">ID <span id="identifier-sort-icon"></span></div>
-                </li>
-                <li>
-                    <div class="body-title" onclick="sortTable('type')">Tur <span id="type-sort-icon"></span></div>
-                </li>
-                <li>
-                    <div class="body-title" onclick="sortTable('quantity')">Miqdor <span id="quantity-sort-icon"></span></div>
-                </li>
-                <li>
-                    <div class="body-title" onclick="sortTable('totalAmount')">Summa <span id="totalAmount-sort-icon"></span></div>
-                </li>
-                <li>
-                    <div class="body-title" onclick="sortTable('percent')">%</div>
-                </li>
-            </ul>
-            <ul class="flex flex-column" id="item-list">
-                {% for t in types %}
-                <li class="attribute-item flex items-center justify-between gap20">
-                    <div class="body-text">{{t.id}}</div>
-                    <div class="name">
-                        <a href="{% url 'type_detail' t.id %}" class="body-title-2">{{t.type_name}}</a>
+            <div class="col-xl-4 mb-20">
+                <div>
+                    <div class="select">
+                        <input type="month" name="start_date" value="{{start}}">
                     </div>
-                    <div class="body-text">{{t.quantity}} ta</div>
-                    <div class="body-text">{{t.sum|intcomma}} $</div>
-                    <div class="body-text">{{t.percentage}} %</div>
-                </li>
-                {% endfor %}
-                <li class="attribute-item flex items-center justify-between gap20">
-                    <div class="body-text">Jami</div>
-                    <div class="body-text">{{types_total.types}}</div>
-                    <div class="body-text">{{types_total.quantity}} ta</div>
-                    <div class="body-text">{{types_total.sum|intcomma}} $</div>
-                    <div class="body-text">100 %</div>
-                </li>
-            </ul>
+                </div>
+            </div>
+            <div class="col-xl-4 mb-20">
+                <div>
+                    <div class="select">
+                        <input type="month" name="end_date" value="{{end}}">
+                    </div>
+                </div>
+            </div>
+            <button type="submit"
+                class="tf-button style-1 w208">Filterlash</button>
         </div>
-        
-        <div class="divider"></div>
-        <div class="flex items-center justify-between flex-wrap gap10">
-            <div class="text-tiny">Showing 10 entries</div>
-            <ul class="wg-pagination">
-                <li>
-                    <a href="#"><i class="icon-chevron-left"></i></a>
-                </li>
-                <li>
-                    <a href="#">1</a>
-                </li>
-                <li class="active">
-                    <a href="#">2</a>
-                </li>
-                <li>
-                    <a href="#">3</a>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-chevron-right"></i></a>
-                </li>
-            </ul>
-        </div>
+    </form>
+    <form action method="post">
+        {% csrf_token %}
+        <input type="hidden" name="month" value="{{month}}">
+        <input type="hidden" name="branch_excel"
+            value="{{request.session.branch}}">
+        <button type="submit" class="tf-button style-1 w208"><i
+                class="icon-file-text"></i>Excel</button>
+    </form>
+    <div class="wg-table table-all-attribute">
+        <ul class="table-title flex gap20 mb-14">
+            <li>
+                <div class="body-title" onclick="sortTable('identifier')">ID
+                    <span id="identifier-sort-icon"></span></div>
+            </li>
+            <li>
+                <div class="body-title" onclick="sortTable('type')">Tur <span
+                        id="type-sort-icon"></span></div>
+            </li>
+            <li>
+                <div class="body-title" onclick="sortTable('quantity')">Miqdor
+                    <span id="quantity-sort-icon"></span></div>
+            </li>
+            <li>
+                <div class="body-title" onclick="sortTable('totalAmount')">Summa
+                    <span id="totalAmount-sort-icon"></span></div>
+            </li>
+            <li>
+                <div class="body-title" onclick="sortTable('percent')">%</div>
+            </li>
+        </ul>
+        <ul class="flex flex-column" id="item-list">
+            {% for t in types %}
+            <li class="attribute-item flex items-center justify-between gap20">
+                <div class="body-text">{{t.id}}</div>
+                <div class="name">
+                    <a href="{% url 'type_detail' t.id %}"
+                        class="body-title-2">{{t.type_name}}</a>
+                </div>
+                <div class="body-text">{{t.quantity}} ta</div>
+                <div class="body-text">{{t.sum|intcomma}} $</div>
+                <div class="body-text">{{t.percentage}} %</div>
+            </li>
+            {% endfor %}
+            <li class="attribute-item flex items-center justify-between gap20">
+                <div class="body-text">Jami</div>
+                <div class="body-text">{{types_total.types}}</div>
+                <div class="body-text">{{types_total.quantity}} ta</div>
+                <div class="body-text">{{types_total.sum|intcomma}} $</div>
+                <div class="body-text">100 %</div>
+            </li>
+        </ul>
     </div>
-   <script src="{% static 'js/sort_type.js' %}"></script>
+
+    <div class="divider"></div>
+    <div class="flex items-center justify-between flex-wrap gap10">
+        <div class="text-tiny">Showing 10 entries</div>
+        <ul class="wg-pagination">
+            <li>
+                <a href="#"><i class="icon-chevron-left"></i></a>
+            </li>
+            <li>
+                <a href="#">1</a>
+            </li>
+            <li class="active">
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#"><i class="icon-chevron-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="{% static 'js/sort_type.js' %}"></script>
 {% endblock %}

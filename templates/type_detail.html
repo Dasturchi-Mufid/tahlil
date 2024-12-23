@@ -20,35 +20,43 @@
 
 </style>
 <div class="wg-box">
-    <form action="{% url 'types' %}" method="post" onchange="submit()">
+    <form action method="post">
         {% csrf_token %}
-    <div class="flex items-center justify-between gap10 flex-wrap">
+        <div class="flex items-center justify-between gap10 flex-wrap">
             <div class="select w200">
-                <select class="" name="branch">
+                <select class name="branch">
                     {% for k,b in branches.items %}
-                    <option value="{{k}}" {% if request.session.branch == k %} selected disabled {% endif %}>{{b}}</option>
+                    <option value="{{k}}" {% if request.session.branch == k %}
+                        selected {% endif %} disabled>{{b}}</option>
                     {% endfor %}
                 </select>
             </div>
-        <!-- </form> -->
             <div class="col-xl-4 mb-20">
                 <div>
-                    <form class="">
-                        {% csrf_token %}
-                        <div class="select">
-                            <input type="month" name="date" value="{{month}}">
-                        </div>
-                    </form>
+                    <div class="select">
+                        <input type="month" name="start_date" value="{{start}}">
+                    </div>
                 </div>
             </div>
-            <form action="" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="month" value="{{month}}">
-                <input type="hidden" name="branch_excel" value="{{request.session.branch}}">
-                <button type="submit" class="tf-button style-1 w208"><i class="icon-file-text"></i>Excel</button>
-            </form>
+            <div class="col-xl-4 mb-20">
+                <div>
+                    <div class="select">
+                        <input type="month" name="end_date" value="{{end}}">
+                    </div>
+                </div>
+            </div>
+            <button type="submit"
+                class="tf-button style-1 w208">Filterlash</button>
         </div>
     </form>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="end" value="{{end}}">
+        <input type="hidden" name="start" value="{{start}}">
+        <input type="hidden" name="branch_excel" value="{{request.session.branch}}">
+        <button type="submit" class="tf-button style-1 w208"><i class="icon-file-text"></i>Excel</button>
+    </form>
+</div>
     <div class="wg-table table-all-attribute">
         <ul class="table-title flex gap20 mb-14">
             <li>

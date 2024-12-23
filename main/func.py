@@ -2,6 +2,18 @@ from django.http.response import HttpResponse
 import datetime,calendar
 import openpyxl
 from decimal import Decimal
+from django.core.paginator import Paginator, PageNotAnInteger,EmptyPage
+
+def paginator_page(List,num,request):
+    paginator = Paginator(List,num)
+    page = request.GET.get('page')
+    try:
+        List = paginator.page(page)
+    except PageNotAnInteger:
+        List = paginator.page(1)
+    except EmptyPage:
+        List = paginator.page(paginator.num_pages)
+    return List
 
 def decimal_to_float(obj):
     if isinstance(obj, Decimal):
@@ -13,7 +25,7 @@ def download_type_detail_xlsx(request,month,branch, data,tur):
     workbook = openpyxl.Workbook()
     sheet = workbook.active
     # sheet.title = 'People Data'
-    first_header = ['',month,branch]
+    first_header = ['',branch] + month
 
     sheet.append(first_header)
     # Set the headers for the columns
@@ -191,8 +203,7 @@ def download_report_xlsx(request, month, branch, data, product_types):
     return response
 
 
-
-def get_date(month: datetime.date):
+def get_date(month):
     # Ensure month is a datetime.date object
     if isinstance(month, str):
         # If month is a string, convert it to a datetime.date object
@@ -218,7 +229,6 @@ def get_data(query,db,params=[]):
     db.execute(query,params)
     data = db.fetchall()
     return data
-
 
 
 def get_date_range(start,end):

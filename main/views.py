@@ -2,7 +2,7 @@ from django.shortcuts import render
 from database import get_db,BRANCHES
 from . import func
 from . import queries
-from datetime import date
+from datetime import date,datetime
 import json
 from django.views.decorators.csrf import csrf_exempt
 
@@ -60,17 +60,27 @@ def home(request):
 
 @csrf_exempt
 def typee(request):
+    print(f'\n{request.POST}\n')
     branch = request.session.get('branch','o')
+
     if request.session.get('branch'):
         branch = request.session.get('branch')
+
     if request.POST.get('branch'):
         request.session['branch'] = branch = request.POST.get('branch','o')
+
     month = date.today().strftime('%Y-%m')
     start,end = func.get_date(month=month)
-    if request.POST.get('date'):
-        month = request.POST.get('date')
-        start,end = func.get_date(month=month)
-    params = [start,end]
+
+    if request.POST.get('start_date') and request.POST.get('end_date'):
+        start,end = func.get_date_range(start=request.POST.get('start_date'),end=request.POST.get('end_date'))
+        print(start,end)
+    
+    start_str = start.strftime('%Y-%m-%d') if isinstance(start, date) else start
+    end_str = end.strftime('%Y-%m-%d') if isinstance(end, date) else end
+
+    params = [start_str,end_str]
+    request.session['start_date'],request.session['end_date'] = start_str,end_str
 
     types = [{
         "id":i[0],
@@ -78,6 +88,7 @@ def typee(request):
         "quantity":i[2],
         "sum":i[3],
         }for i in func.get_data(query=queries.types,db=get_db(dbname=branch),params=params)]
+    
     types_total = {
         "types":len(types),
         "quantity": sum(i['quantity'] for i in types),
@@ -96,24 +107,33 @@ def typee(request):
         'month':month,
         'types': types,
         'types_total': types_total,
-        'branches':branches
+        'branches':branches,
+        'start':start.strftime('%Y-%m'),
+        'end':end.strftime('%Y-%m'),
     }
     
     return render(request, 'types.html', context)
 
 @csrf_exempt
 def type_detail(request,id):
+    print(f'\n{request.POST}\n')
+    start_date = datetime.strptime(request.session.get('start_date'),'%Y-%m-%d').strftime('%Y-%m')
+    end_date = datetime.strptime(request.session.get('end_date'),'%Y-%m-%d').strftime('%Y-%m')
     request.session['branch'] = branch = request.session.get('branch','o')
-    month = date.today().strftime('%Y-%m')
-    start,end = func.get_date(month=month)
-    if request.POST.get('date'):
-        month = request.POST.get('date')
-        start,end = func.get_date(month=month)
+    start,end = func.get_date_range(start=start_date,end=end_date)
+
+    if request.POST.get('start_date') and request.POST.get('end_date'):
+        start,end = func.get_date_range(start=request.POST.get('start_date'),end=request.POST.get('end_date'))
+    
+    if request.POST.get('branch'):
+        request.session['branch'] = branch = request.POST.get('branch')
+
     params = [start, end,id]
+
     products = [{
         "type_id":i[0],
         "type":i[1],
-        "product":f'{i[2]} {i[3]} {i[4]}',
+        "product": f'{i[2] if i[2] is not None else ""} {i[3] if i[3] is not None else ""} {i[4] if i[4] is not None else ""}',
         "quantity":i[5],
         "price":i[6],
         "total":i[7],
@@ -121,22 +141,27 @@ def type_detail(request,id):
         "out":i[9].strftime("%d.%m.%Y"),
         "difference":(i[9]-i[8]).days
         } for i in func.get_data(query=queries.product,db=get_db(dbname=branch),params=params)]
+    
     totals = {
         "products":len(products),
         "quantity": sum(i['quantity'] for i in products),
         "total": sum(i['total'] for i in products)
     }
-    if request.POST.get('month') and request.POST.get('branch_excel'):
-        month_ = request.POST.get('month')
+
+    if request.POST.get('start') and request.POST.get('end') and request.POST.get('branch_excel'):
+        start_,end_ = request.POST.get('start'),request.POST.get('end')
         branch_ = request.POST.get('branch_excel')
         tur = products[0].get('type') if products else ''
-        return func.download_type_detail_xlsx(request,month_,branch_,products,tur)
+        return func.download_type_detail_xlsx(request=request,month=[start_,end_],branch=branch_,data=products,tur=tur)
+    
     context = {
         'products': products,
         'branches':branches,
-        'month':month,
-        'totals': totals
+        'totals': totals,
+        'end': end.strftime('%Y-%m'),
+        'start': start.strftime('%Y-%m'),
     }
+    
     return render(request,'type_detail.html',context)
 
 
